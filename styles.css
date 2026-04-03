@@ -1,0 +1,148 @@
+:root {
+  --bg: #eef8ff;
+  --text: #203344;
+  --bowl-edge: #7ac8ff;
+  --water-top: #8bdcff;
+  --water-bottom: #4cb9f3;
+  --banner: #ffe56f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(circle at top, #f8fdff, var(--bg));
+  color: var(--text);
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 8px;
+}
+
+.bowl {
+  position: relative;
+  width: min(90vw, 780px);
+  height: 360px;
+  margin: 24px auto;
+  border: 8px solid var(--bowl-edge);
+  border-radius: 45% 45% 50% 50% / 20% 20% 65% 65%;
+  overflow: hidden;
+  background: linear-gradient(to bottom, var(--water-top), var(--water-bottom));
+  box-shadow: inset 0 0 0 10px rgba(255, 255, 255, 0.25), 0 12px 24px rgba(14, 65, 112, 0.2);
+}
+
+.water {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.04));
+  pointer-events: none;
+}
+
+.fish-container {
+  position: absolute;
+  inset: 0;
+}
+
+.fish {
+  position: absolute;
+  left: -90px;
+  width: 70px;
+  height: 38px;
+  background: var(--fish-color, #ff9966);
+  border-radius: 55% 50% 45% 50%;
+  box-shadow: inset -8px -6px rgba(255, 255, 255, 0.25);
+  animation: swim var(--duration, 7s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.fish::before {
+  content: "";
+  position: absolute;
+  left: -17px;
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-right: 18px solid var(--fish-color, #ff9966);
+}
+
+.fish::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  background: #0f2b42;
+  border-radius: 50%;
+}
+
+.fish.reverse {
+  animation-direction: reverse;
+}
+
+.fish.picked {
+  outline: 3px solid #fffbe2;
+  box-shadow: 0 0 0 4px rgba(255, 235, 130, 0.8), inset -8px -6px rgba(255, 255, 255, 0.25);
+}
+
+.numbers-panel {
+  margin-top: 8px;
+}
+
+.number-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.number-buttons button {
+  min-width: 48px;
+  padding: 10px 14px;
+  border: 2px solid #2f95cf;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #175987;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.number-buttons button:hover {
+  background: #dff3ff;
+}
+
+.banner {
+  margin: 24px auto 0;
+  max-width: 680px;
+  min-height: 54px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--banner);
+  color: #705500;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(153, 122, 5, 0.2);
+  display: grid;
+  place-items: center;
+}
+
+@keyframes swim {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(var(--travel, 860px));
+  }
+}
